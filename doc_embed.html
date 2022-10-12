@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student's Guide</title>
+</head>
+<body>
+<div id="doc-view"></div>
+<script src="https://documentservices.adobe.com/view-sdk/viewer.js"></script>
+<script type="text/javascript">
+
+var url_string = window.location.href; 
+var url = new URL(url_string);
+var docUrl = url.searchParams.get("docUrl");
+var clientId = "81e4298dd9e8431e953d6f00a78f7d9f"
+var filename = "Dynamic"
+    
+    
+	document.addEventListener("adobe_dc_view_sdk.ready", function(){
+	    
+		var docView = new AdobeDC.View({clientId: clientId , divId: "doc-view" 
+		});
+		docView.previewFile({
+		    
+			content:{
+			    location: {
+			        url: docUrl
+			        }
+			    
+			},
+			metaData:{fileName: filename}
+		}, {showAnnotationTools: false, showDownloadPDF: false, showPrintPDF: false});
+	});
+</script>
+</body>
+</html>
+
+
+
+
